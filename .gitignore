@@ -1,0 +1,6 @@
+*.suo
+/NMSGM/bin
+/NMSGM/obj
+/NMSGM/publish
+/packages
+*.user
