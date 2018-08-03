@@ -74,7 +74,7 @@ namespace NMSGM.Classes
 
             fsWatcher = new FileSystemWatcher();
             fsWatcher.Path = savegameProfile.ProfileDirectory.FullName;
-            fsWatcher.Filter = "storage*.hg";
+            fsWatcher.Filter = "save*.hg";
             fsWatcher.Changed += FsWatch_Changed;
             fsWatcher.Created += FsWatch_Changed;
             fsWatcher.Deleted += FsWatch_Changed;
@@ -152,7 +152,7 @@ namespace NMSGM.Classes
 
         private bool isValidSavegameName(string filename)
         {
-            var regexValidName = new Regex("^(mf_)?storage(2|3)?.hg$");
+            var regexValidName = new Regex("^(mf_)?save2?.hg$");
             return regexValidName.IsMatch(filename);
         }
 

@@ -13,12 +13,10 @@ namespace NMSGM.Helpers
         {
             switch (filename)
             {
-                case "storage.hg":
+                case "save.hg":
                     return 0;
-                case "storage2.hg":
+                case "save2.hg":
                     return 1;
-                case "storage3.hg":
-                    return 2;
                 default:
                     throw new InvalidDataException();
             }
@@ -29,11 +27,9 @@ namespace NMSGM.Helpers
             switch (id)
             {
                 case 0:
-                    return "storage.hg";
+                    return "save.hg";
                 case 1:
-                    return "storage2.hg";
-                case 2:
-                    return "storage3.hg";
+                    return "save2.hg";
                 default:
                     throw new InvalidDataException();
             }
