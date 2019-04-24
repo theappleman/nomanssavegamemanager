@@ -152,7 +152,7 @@ namespace NMSGM.Classes
 
         private bool isValidSavegameName(string filename)
         {
-            var regexValidName = new Regex("^(mf_)?save2?.hg$");
+            var regexValidName = new Regex("^(mf_)?save(|[2-9]|10).hg$");
             return regexValidName.IsMatch(filename);
         }
 
