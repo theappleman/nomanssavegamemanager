@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 
 namespace NMSGM.Helpers
@@ -11,28 +12,31 @@ namespace NMSGM.Helpers
     {
         public static uint GetProfileFromFilename(string filename)
         {
-            switch (filename)
+            if (filename == "save.hg")
             {
-                case "save.hg":
-                    return 0;
-                case "save2.hg":
-                    return 1;
-                default:
-                    throw new InvalidDataException();
+                return 0;
             }
+
+            Regex rx = new Regex("save(?<slot>[2-9]|10)\\.hg", RegexOptions.Compiled);
+            MatchCollection matches = rx.Matches(filename);
+            foreach (Match match in matches)
+            {
+                GroupCollection groups = match.Groups;
+                return System.Convert.ToUInt32(groups["slot"].Value) - 1;
+            }
+            throw new InvalidDataException();
         }
 
         public static string GetStorageFilenameFromProfileId(uint id)
         {
-            switch (id)
+            if (id == 0)
             {
-                case 0:
-                    return "save.hg";
-                case 1:
-                    return "save2.hg";
-                default:
-                    throw new InvalidDataException();
+                return "save.hg";
+            } else if ( 2 <= id && id <= 10 )
+            {
+                return string.Concat("save", id + 1, ".hg");
             }
+            throw new InvalidDataException();
         }
     }
 }
