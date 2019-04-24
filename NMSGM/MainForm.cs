@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Deployment.Application;
 using System.Diagnostics;
 using System.Drawing;
 using System.IO;
@@ -21,11 +20,6 @@ namespace NMSGM
         SavegameLocationManager sgLoc;
         public MainForm()
         {
-            if (ApplicationDeployment.IsNetworkDeployed && ApplicationDeployment.CurrentDeployment.IsFirstRun)
-            {
-                DisplayChangelogForm();
-            }
-            
             InitializeComponent();
 
             if(FindSavegameFolder() && Settings.Default.AutostartWatcherOnLaunch)

@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Deployment.Application;
 using System.IO;
 using System.Linq;
 using System.Security.AccessControl;
@@ -25,10 +24,7 @@ namespace NMSGM
 
         public static Version GetDeploymentVersion()
         {
-            if (ApplicationDeployment.IsNetworkDeployed)
-                return ApplicationDeployment.CurrentDeployment.CurrentVersion;
-            else
-                return null;
+	    return null;
         }
     }
 }
