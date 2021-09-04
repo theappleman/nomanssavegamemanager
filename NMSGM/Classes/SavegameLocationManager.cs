@@ -170,14 +170,14 @@ namespace NMSGM.Classes
 
                         try
                         {
-                            db.SaveFileToDb(itm, _main);
+                            await Task.Run(() => db.SaveFileToDb(itm, _main));
                         }
-                        catch (FileNotFoundException e)
+                        catch (FileNotFoundException)
                         {
                             // this happens if the file is actually not present (e.g. watcher has been triggered by cut/delete/move operation
                             // we just do nothing here which will keep the item dequeued
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             // this will likeley only happen if the NMS process still has a lock on the file. We are retrying several times
                             if(itm.WriteRetries <= 4)

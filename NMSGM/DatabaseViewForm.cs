@@ -239,7 +239,7 @@ namespace NMSGM
                     }
                     catch (Exception ex)
                     {
-                        MessageBox.Show("Automatic backup of most recent save before overwriting by restore failed. Please try again");
+                        MessageBox.Show("Automatic backup of most recent save before overwriting by restore failed. Please try again: " + ex.Message);
                     }
                 }
                 else
