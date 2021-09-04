@@ -120,12 +120,9 @@ namespace NMSGM
                                 var mfBlobId = itm.mfBlobId;
                                 var stBlobId = itm.stBlobId;
 
-                                using (db.BeginTrans())
-                                {
-                                    db.FileStorage.Delete(mfBlobId);
-                                    db.FileStorage.Delete(stBlobId);
-                                    saveIndex.Delete(itm.Id);
-                                }
+                                db.FileStorage.Delete(mfBlobId);
+                                db.FileStorage.Delete(stBlobId);
+                                saveIndex.Delete(itm.Id);
                             }
 
                             //todo: review if fixed: https://github.com/mbdavid/LiteDB/issues/249
