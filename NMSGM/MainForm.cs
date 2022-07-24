@@ -1,4 +1,5 @@
 ﻿using NMSGM.Classes;
+using NMSGM.Entities;
 using NMSGM.Properties;
 using System;
 using System.Collections.Generic;
@@ -45,12 +46,34 @@ namespace NMSGM
                 lbPath.Enabled = true;
                 lbType.Text = sgLoc.savegameProfile.SaveProfileType.ToString();
                 btnStartWatcher.Enabled = true;
+                switch (sgLoc.savegameProfile.SaveProfileType)
+                {
+                    case SavegameType.Steam:
+                        button2.Enabled = true;
+                        break;
+                }
                 return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show("Error while detecting savegame folder: " + e.Message + "\r\n" + e.InnerException);
                 return false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            switch (sgLoc.savegameProfile.SaveProfileType)
+            {
+                case SavegameType.Steam:
+                    Process.Start("steam://rungameid/275850");
+                    break;
+
+                    //case SavegameType.GoG:
+                    //    TODO: Find GalaxyClient/GameExecutable
+                    //    ProcessStartInfo sInfo = new ProcessStartInfo(.../GalaxyClient.exe /command=runGame /gameId=?? /path=...);
+                    //    Process.Start(sInfo);
+                    //    break;
             }
         }
 
