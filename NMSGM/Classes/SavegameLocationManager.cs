@@ -51,7 +51,7 @@ namespace NMSGM.Classes
                 if (chosenProfileFolder.Name.StartsWith("st_"))
                 {
                     savegameProfile.SaveProfileType = SavegameType.Steam;
-                    savegameProfile.EncryptionSeed = chosenProfileFolder.Name.Replace("st_", "");
+                    savegameProfile.EncryptionSeed = chosenProfileFolder.Name.Substring(3);
                 }
                 else if (chosenProfileFolder.Name == "DefaultUser")
                 {
