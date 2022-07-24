@@ -175,7 +175,7 @@ namespace NMSGM
 
         private void contactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo("https://bitbucket.org/leepfrog/no-mans-savegame-manager/issues?status=new&status=open");
+            ProcessStartInfo sInfo = new ProcessStartInfo("https://github.com/theappleman/nomanssavegamemanager/issues");
             Process.Start(sInfo);
         }
     }
