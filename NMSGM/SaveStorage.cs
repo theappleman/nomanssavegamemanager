@@ -37,11 +37,9 @@ namespace NMSGM
                     entry.comment = itm.Comment;
 
                 saveIndex.Insert(entry);
-
-                _main.Invoke(new Action(() => _main.UpdateLastProtected()));
-
             }
-            
+
+            _main.Invoke(new Action(() => _main.UpdateLastProtected()));
             _main.Invoke(new Action(() => _main.UpdateDbSize()));
 
         }
