@@ -12,7 +12,7 @@ jobs:
 
     steps:
     - name: Checkout repo
-      uses: actions/checkout@v2
+      uses: actions/checkout@v4
 
     - name: Build with msbuild
       run: |
@@ -21,7 +21,7 @@ jobs:
         echo "tag_name=${GITHUB_REF:10}" | tee -a "$GITHUB_ENV"
 
     - name: Upload artifacts to action run
-      uses: actions/upload-artifact@v2.2.4
+      uses: actions/upload-artifact@v4
       with:
         path: NMSGM/bin/Release
         name: NMSGM-${{ env.abbrev_sha }}
@@ -37,7 +37,7 @@ jobs:
 
     steps:
     - name: Download build artifact
-      uses: actions/download-artifact@v2
+      uses: actions/download-artifact@v4
       with:
         name: NMSGM-${{ needs.build.outputs.abbrev_sha }}
         path: NMSGM-${{ env.tag_name }}
