@@ -17,7 +17,7 @@ namespace NMSGM.Helpers
                 return 0;
             }
 
-            Regex rx = new Regex("save(?<slot>[2-9]|10)\\.hg", RegexOptions.Compiled);
+            Regex rx = new Regex("save(?<slot>[2-9]|[12][0-9]|30)\\.hg", RegexOptions.Compiled);
             MatchCollection matches = rx.Matches(filename);
             foreach (Match match in matches)
             {
@@ -32,7 +32,7 @@ namespace NMSGM.Helpers
             if (id == 0)
             {
                 return "save.hg";
-            } else if ( 2 <= id && id <= 10 )
+            } else if ( 2 <= id && id <= 30 )
             {
                 return string.Concat("save", id + 1, ".hg");
             }

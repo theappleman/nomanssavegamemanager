@@ -1,15 +1,9 @@
 ﻿using NMSGM.Classes;
+using NMSGM.Entities;
 using NMSGM.Properties;
 using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
 using System.Diagnostics;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static NMSGM.Classes.SavegameLocationManager;
 
@@ -45,12 +39,34 @@ namespace NMSGM
                 lbPath.Enabled = true;
                 lbType.Text = sgLoc.savegameProfile.SaveProfileType.ToString();
                 btnStartWatcher.Enabled = true;
+                switch (sgLoc.savegameProfile.SaveProfileType)
+                {
+                    case SavegameType.Steam:
+                        button2.Enabled = true;
+                        break;
+                }
                 return true;
             }
             catch (Exception e)
             {
                 MessageBox.Show("Error while detecting savegame folder: " + e.Message + "\r\n" + e.InnerException);
                 return false;
+            }
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            switch (sgLoc.savegameProfile.SaveProfileType)
+            {
+                case SavegameType.Steam:
+                    Process.Start("steam://rungameid/275850");
+                    break;
+
+                    //case SavegameType.GoG:
+                    //    TODO: Find GalaxyClient/GameExecutable
+                    //    ProcessStartInfo sInfo = new ProcessStartInfo(.../GalaxyClient.exe /command=runGame /gameId=?? /path=...);
+                    //    Process.Start(sInfo);
+                    //    break;
             }
         }
 
@@ -175,7 +191,7 @@ namespace NMSGM
 
         private void contactToolStripMenuItem_Click(object sender, EventArgs e)
         {
-            ProcessStartInfo sInfo = new ProcessStartInfo("https://bitbucket.org/leepfrog/no-mans-savegame-manager/issues?status=new&status=open");
+            ProcessStartInfo sInfo = new ProcessStartInfo("https://github.com/theappleman/nomanssavegamemanager/issues");
             Process.Start(sInfo);
         }
     }

@@ -51,7 +51,7 @@ namespace NMSGM.Classes
                 if (chosenProfileFolder.Name.StartsWith("st_"))
                 {
                     savegameProfile.SaveProfileType = SavegameType.Steam;
-                    savegameProfile.EncryptionSeed = chosenProfileFolder.Name.Replace("st_", "");
+                    savegameProfile.EncryptionSeed = chosenProfileFolder.Name.Substring(3);
                 }
                 else if (chosenProfileFolder.Name == "DefaultUser")
                 {
@@ -152,7 +152,7 @@ namespace NMSGM.Classes
 
         private bool isValidSavegameName(string filename)
         {
-            var regexValidName = new Regex("^(mf_)?save(|[2-9]|10).hg$");
+            var regexValidName = new Regex("^(mf_)?save(|[2-9]|[1-2][0-9]|30).hg$");
             return regexValidName.IsMatch(filename);
         }
 
@@ -170,14 +170,14 @@ namespace NMSGM.Classes
 
                         try
                         {
-                            db.SaveFileToDb(itm, _main);
+                            await Task.Run(() => db.SaveFileToDb(itm, _main));
                         }
-                        catch (FileNotFoundException e)
+                        catch (FileNotFoundException)
                         {
                             // this happens if the file is actually not present (e.g. watcher has been triggered by cut/delete/move operation
                             // we just do nothing here which will keep the item dequeued
                         }
-                        catch (Exception e)
+                        catch (Exception)
                         {
                             // this will likeley only happen if the NMS process still has a lock on the file. We are retrying several times
                             if(itm.WriteRetries <= 4)
